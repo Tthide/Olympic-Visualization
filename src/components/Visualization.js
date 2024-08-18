@@ -1,14 +1,34 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import '../styles/Visualization.css';
 
-export class Visualization extends Component {
-  static propTypes = {}
+class Visualization extends Component {
+    constructor(props) {
+        super(props);
 
-  render() {
-    return (
-        <h1 className="text-center">Visualization here</h1>
-    )
-  }
+        this.state = {//current visualization parameter
+            VisualizationMode: "PieChart",
+            TimePeriodStart: 1896,
+            TimePeriodEnd: 2021,
+            Discipline: "all",
+            MedalType: "all",
+            Country:"all",
+        };
+    }
+
+    render() {
+        return (
+            <div className="visualization">
+                <div className="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
-export default Visualization
+
+export default Visualization;
