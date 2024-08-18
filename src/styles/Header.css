@@ -23,6 +23,6 @@
 /* Media query for screens larger than 992px (large devices, like laptops) */
 @media (min-width: 992px) {
   .header-title {
-    font-size: 3.5rem; /* Further increase font size */
+    font-size: 4rem; /* Further increase font size */
   }
 }
