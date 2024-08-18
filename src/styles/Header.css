@@ -5,10 +5,24 @@
     padding: 1rem;
     color: white;
   }
-  
+
+  /* Base styles for all screen sizes */
   .header-title{
-    font-family: "Roboto";
-    font-size: 1em;
-    justify-content: space-between;
+    font-family: "RobotoBold";
+    font-size: 2rem;
+    justify-content: center;
   }
-  
+
+  /* Media query for screens larger than 576px (small devices, like tablets) */
+@media (min-width: 576px) {
+  .header-title {
+    font-size: 2.5rem; /* Increase font size */
+  }
+}
+
+/* Media query for screens larger than 992px (large devices, like laptops) */
+@media (min-width: 992px) {
+  .header-title {
+    font-size: 3.5rem; /* Further increase font size */
+  }
+}
