@@ -1,0 +1,14 @@
+/* Body.css */
+
+.header {
+    background-color: #282c34;
+    padding: 1rem;
+    color: white;
+  }
+  
+  .header-title{
+    font-family: "Roboto";
+    font-size: 10rem;
+    justify-content: center;
+  }
+  
