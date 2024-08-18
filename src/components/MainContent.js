@@ -1,15 +1,10 @@
-
 import React from 'react';
-import '../styles/Header.css';
-import OlympicLogo from '../assets/Olympic_Logo.png';
+import '../styles/MainContent.css';
 
-
-
-
-function Body() {
+function MainContent() {
     return (
-        <div className="body">
-            <div className="container-fluid">
+        <div className="mainContent">
+            <div className="container-fluid mainContent-background">
                 <div class="row">
                     <div class="col-12">
                         <h1 className="text-center">Visualization here</h1>
@@ -20,4 +15,4 @@ function Body() {
     );
 }
 
-export default Body;
+export default MainContent;

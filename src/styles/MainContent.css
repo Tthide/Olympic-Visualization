@@ -1,0 +1,26 @@
+/* MainContent.css */
+
+.mainContent {
+  background-color: #dbdbdb;
+
+  color: black;
+  
+  flex: 1; /* This allows the body to grow and fill the remaining space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.mainContent-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url('../assets/Olympic_Logo.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+}
