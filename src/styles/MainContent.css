@@ -1,11 +1,12 @@
 /* MainContent.css */
 
 .mainContent {
-  background-color: #f2f2f2 ;
+  background-color: #f2f2f2;
 
   color: black;
 
-  flex: 1; /* This allows the body to grow and fill the remaining space */
+  flex: 1;
+  /* This allows the body to grow and fill the remaining space */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,14 +14,22 @@
 }
 
 .mainContent-background {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   background-image: url('../assets/Olympic_Logo.svg');
-  background-size: cover;
+  background-size: 90%;
   background-position: center;
   background-repeat: no-repeat;
+}
 
+/* Media query for screens larger than 576px (small devices, like tablets) */
+@media (min-width: 576px) {
+  .mainContent-background {
+    background-size: 60%;
+  }
+}
 
+/* Media query for screens larger than 576px (small devices, like tablets) */
+@media (min-width: 992px) {
+  .mainContent-background {
+    background-size: 40%;
+  }
 }
