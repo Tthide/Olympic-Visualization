@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
+import  VisualizationModeFilter  from './VisualizationModeFilter';
+
 
 export default class Filters extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+
+  }
+
 
   handleChange = (Property, Value) => {
     // Call the parent method passed as a prop
@@ -15,14 +24,7 @@ export default class Filters extends Component {
       <div>
         <h2>Child Component</h2>
 
-        <label for="dropdown-VisualizationMode">Choose a Visualization type:</label>
-        <select name="dropdown" id="dropdown-VisualizationMode" onChange={(value) =>this.handleChange('VisualizationMode',value)} >
-          <option value="PieChart" >Pie chart</option>
-          <option value="Treemap">Treemap</option>
-          <option value="Choropleth">Choropleth</option>
-        </select>
-
-
+        <VisualizationModeFilter handleChange={this.handleChange} />
 
       </div>
     );
