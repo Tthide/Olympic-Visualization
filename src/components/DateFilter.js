@@ -26,6 +26,24 @@ const DateFilter = ({ handleChange }) => {
                 renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
                 minDistance={0}
                 step = {4}
+
+                
+
+                onAfterChange={(value, index) => {
+
+                    console.log(`onAfterChange: ${JSON.stringify({ value, index })}`)
+
+                    if(index==0){
+                        handleChange('TimePeriodStart', value[0]);
+
+
+                    }else if(index==1){
+                        handleChange('TimePeriodEnd', value[1]);
+
+                    }
+                }
+
+                }
             
             />
         </div>

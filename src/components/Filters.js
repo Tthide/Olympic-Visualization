@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import  VisualizationModeFilter  from './VisualizationModeFilter';
-import  DateFilter  from './DateFilter';
+import VisualizationModeFilter from './VisualizationModeFilter';
+import DateFilter from './DateFilter';
 import '../styles/Filters.css';
 
 
@@ -15,10 +15,17 @@ export default class Filters extends Component {
 
 
   handleChange = (Property, Value) => {
-    // Call the parent method passed as a prop
-    const selectedValue = Value.target.value;
-    console.log(Property);
-    console.log(selectedValue);
+
+    let selectedValue = null;
+    // From the onChange event from the <input> we get Objects
+    //but from the react-slider we directly get the values
+    if (typeof Value === 'object' && Value !== null) {
+      selectedValue = Value.target.value;
+    } else {
+      selectedValue = Value;
+    }
+
+
     this.props.updateState(Property, selectedValue);
   };
 
