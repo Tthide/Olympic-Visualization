@@ -29,15 +29,24 @@
 /* Styles for the slider component */
 .slider {
     width: 100%;
-    height: 4em;
-    border: 1px solid grey;
+    height: 1.9rem;
+    border-radius: 2% / 20%;
+    border : 0.1rem solid #636363;
+    background-color:  #929292;
 }
 
-.slider .track {
-    top: 20px;
-    height: 10px;
+ .track, .mark {
+    top: 0.55rem;
+    height: 0.8rem;
+  }
+
+  .track{
     background: #c4c4c4;
 
+  }
+
+  .mark{
+    background: #1a1a1a;
   }
 
   .track.track-2{
@@ -45,22 +54,27 @@
   }
 
   .track.track-1 {
-    background: rgb(255, 0, 0);
-  }
-
-
-  .slider .thumb {
-    width: 50px;
-    height: 48px;
-    line-height: 38px;
+    background: #64a8cc;
   }
 
   .thumb {
+ 
     font-size: 0.9em;
-    text-align: center;
-    background-color: black;
-    color: white;
+    text-align: left;
+    background-color: #0585c8;
+    color:black;
     cursor: pointer;
-    border: 5px solid gray;
     box-sizing: border-box;
+    border-radius: 20%;
+    border : 0.1rem solid #1a1a1a;
+    height: 1.8rem;
+    width: 1.8rem;
+    line-height: 5rem;
+
+  }
+
+  .thumb.active {
+
+    background-color:#055e8d;
+
   }

@@ -10,7 +10,7 @@ const DateFilter = ({ handleChange }) => {
 
             <div className="slider-label">             
                 <label id="slider-label-first">1896</label>
-                <label id="slider-label-second">2021</label>
+                <label id="slider-label-second">2020</label>
             </div>
             <ReactSlider
                 className="slider"
@@ -18,13 +18,15 @@ const DateFilter = ({ handleChange }) => {
                 trackClassName="track"
                 marks={[1900, 1950, 2000]}
                 markClassName="mark"
-                defaultValue={[1896, 2021]}
+                defaultValue={[1896, 2020]}
                 min={1896}
-                max={2021}
+                max={2020}
                 ariaLabel={['Lower thumb', 'Upper thumb']}
                 ariaValuetext={state => `Thumb value ${state.valueNow}`}
                 renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
                 minDistance={0}
+                step = {4}
+            
             />
         </div>
 
