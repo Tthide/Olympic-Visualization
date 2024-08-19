@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import  VisualizationModeFilter  from './VisualizationModeFilter';
 import  DateFilter  from './DateFilter';
+import '../styles/Filters.css';
+
 
 
 export default class Filters extends Component {
@@ -22,7 +24,7 @@ export default class Filters extends Component {
 
   render() {
     return (
-      <div>
+      <div className='filters'>
         <h2>Child Component</h2>
 
         <VisualizationModeFilter handleChange={this.handleChange} />
