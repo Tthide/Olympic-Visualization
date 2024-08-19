@@ -9,7 +9,7 @@ class Visualization extends Component {
         this.state = {//current visualization parameter
             VisualizationMode: "PieChart",
             TimePeriodStart: 1896,
-            TimePeriodEnd: 2021,
+            TimePeriodEnd: 2020,
             Discipline: "all",
             MedalType: "all",
             Country: "all",
