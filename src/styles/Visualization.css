@@ -1,1 +1,12 @@
 /* Visualization.css */
+.visualization {
+    background-color: #f2f2f2b9;
+    color: black;
+    
+    flex: 1;
+    /* This allows the body to grow and fill the remaining space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  }

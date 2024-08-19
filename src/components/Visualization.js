@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../styles/Visualization.css';
+import Filters from "./Filters"
 
 class Visualization extends Component {
     constructor(props) {
@@ -11,17 +12,40 @@ class Visualization extends Component {
             TimePeriodEnd: 2021,
             Discipline: "all",
             MedalType: "all",
-            Country:"all",
+            Country: "all",
         };
+
+        this.updateState = this.updateState.bind(this);
+
     }
 
+    updateState = (property, newValue) => {
+        let newState = { ...this.state };
+        newState[property] = newValue;
+        this.setState(newState);
+    };
+
     render() {
+
+        const stateEntries = [];
+        Object.entries(this.state).forEach(([key, value]) => {
+            stateEntries.push(
+
+                <p> <strong>{key}:</strong> {value}</p>
+
+            );
+        });
+
         return (
             <div className="visualization">
                 <div className="container-fluid">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-2">
+                            <Filters updateState={this.updateState} />
 
+                            <h2>Current state</h2>
+
+                            {stateEntries}
                         </div>
                     </div>
                 </div>
