@@ -48,6 +48,8 @@ export default class Filters extends Component {
         {/* Discipline */}
         <DropdownFilter handleChange={this.handleChange} targetProperty="Discipline" domainProperty={[...new Set(summer.map(item => item.Discipline))].sort()} defaultValue="All" />
 
+        {/* MedalType */}
+        <DropdownFilter handleChange={this.handleChange} targetProperty="MedalType" domainProperty={["Gold","Silver","Bronze"]} defaultValue="All" />
 
       </div>
     );
