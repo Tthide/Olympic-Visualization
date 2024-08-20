@@ -5,7 +5,7 @@ const DropdownFilter = ({ handleChange, targetProperty, domainProperty, defaultV
 
     return (
         <div className="filter-dropdown">
-            <label htmlFor={`dropdown-${targetProperty}`}>Choose a {targetProperty}:</label>
+            <label htmlFor={`dropdown-${targetProperty}`}>Choose a {targetProperty}: </label>
             <select name="dropdown" id={`dropdown-${targetProperty}`} onChange={(event) => handleChange(targetProperty, event.target.value)}>
 
 
