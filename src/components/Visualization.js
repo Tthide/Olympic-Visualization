@@ -10,7 +10,7 @@ class Visualization extends Component {
             VisualizationMode: "None",
             TimePeriodStart: 1896,
             TimePeriodEnd: 2020,
-            Discipline: "All",
+            Sport: "All",
             MedalType: "All",
             Country: "All",
         };

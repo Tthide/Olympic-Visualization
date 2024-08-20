@@ -30,8 +30,6 @@ export default class Filters extends Component {
 
   render() {
 
-    console.log([...new Set(summer.map(item => item.Discipline))])
-
     return (
       <div className='filters'>
         <h2>Child Component</h2>
@@ -46,7 +44,7 @@ export default class Filters extends Component {
         <DropdownFilter handleChange={this.handleChange} targetProperty="Country" domainProperty={[...new Set(dictionary.map(item => item.Country))]} defaultValue="All" />
 
         {/* Discipline */}
-        <DropdownFilter handleChange={this.handleChange} targetProperty="Discipline" domainProperty={[...new Set(summer.map(item => item.Discipline))].sort()} defaultValue="All" />
+        <DropdownFilter handleChange={this.handleChange} targetProperty="Sport" domainProperty={[...new Set(summer.map(item => item.Sport))].sort()} defaultValue="All" />
 
         {/* MedalType */}
         <DropdownFilter handleChange={this.handleChange} targetProperty="MedalType" domainProperty={["Gold","Silver","Bronze"]} defaultValue="All" />
