@@ -4,6 +4,7 @@ import DateFilter from './DateFilter';
 import '../styles/Filters.css';
 import visualizationModeDomain from '../data/visualizationModeDomain.json';
 import dictionary from '../data/dictionary.json';
+import summer from '../data/summer.json';
 
 
 
@@ -29,17 +30,23 @@ export default class Filters extends Component {
 
   render() {
 
+    console.log([...new Set(summer.map(item => item.Discipline))])
 
     return (
       <div className='filters'>
         <h2>Child Component</h2>
 
+        {/* VisualizationMode */}
         <DropdownFilter handleChange={this.handleChange} targetProperty="VisualizationMode" domainProperty={visualizationModeDomain} defaultValue="None" />
 
         <DateFilter handleChange={this.handleChange} />
 
+        {/* Country */}
         {/* Extracting here the country set from the dictionary*/}
         <DropdownFilter handleChange={this.handleChange} targetProperty="Country" domainProperty={[...new Set(dictionary.map(item => item.Country))]} defaultValue="All" />
+
+        {/* Discipline */}
+        <DropdownFilter handleChange={this.handleChange} targetProperty="Discipline" domainProperty={[...new Set(summer.map(item => item.Discipline))].sort()} defaultValue="All" />
 
 
       </div>
