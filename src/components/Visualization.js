@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../styles/Visualization.css';
 import Filters from "./Filters"
+import  RenderVisualization from './RenderVisualization';
 
 class Visualization extends Component {
     constructor(props) {
@@ -40,12 +41,15 @@ class Visualization extends Component {
             <div className="visualization">
                 <div className="container-fluid">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-xs-6">
                             <Filters updateState={this.updateState} />
-
                             <h2>Current state</h2>
 
                             {stateEntries}
+    
+                        </div>
+                        <div class="col-xs-6">
+                            <RenderVisualization VisualizationMode={this.state.VisualizationMode}/>
                         </div>
                     </div>
                 </div>
