@@ -12,7 +12,7 @@ class Visualization extends Component {
             TimePeriodStart: 1896,
             TimePeriodEnd: 2020,
             Sport: "All",
-            MedalType: "All",
+            Medal: "All",
             Country: "All",
         };
 
