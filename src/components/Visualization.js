@@ -49,7 +49,7 @@ class Visualization extends Component {
     
                         </div>
                         <div class="col-xs-6">
-                            <RenderVisualization VisualizationMode={this.state.VisualizationMode}/>
+                            <RenderVisualization VisualizationMode={this.state.VisualizationMode} currentFilters={this.state}/>
                         </div>
                     </div>
                 </div>
