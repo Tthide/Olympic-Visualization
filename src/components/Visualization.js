@@ -7,12 +7,12 @@ class Visualization extends Component {
         super(props);
 
         this.state = {//current visualization parameter
-            VisualizationMode: "PieChart",
+            VisualizationMode: "None",
             TimePeriodStart: 1896,
             TimePeriodEnd: 2020,
-            Discipline: "all",
-            MedalType: "all",
-            Country: "all",
+            Discipline: "All",
+            MedalType: "All",
+            Country: "All",
         };
 
         this.updateState = this.updateState.bind(this);

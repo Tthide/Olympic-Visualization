@@ -34,12 +34,12 @@ export default class Filters extends Component {
       <div className='filters'>
         <h2>Child Component</h2>
 
-        <DropdownFilter handleChange={this.handleChange} targetProperty="VisualizationMode" domainProperty={visualizationModeDomain} />
+        <DropdownFilter handleChange={this.handleChange} targetProperty="VisualizationMode" domainProperty={visualizationModeDomain} defaultValue="None" />
 
         <DateFilter handleChange={this.handleChange} />
 
         {/* Extracting here the country set from the dictionary*/}
-        <DropdownFilter handleChange={this.handleChange} targetProperty="Country" domainProperty={[...new Set(dictionary.map(item => item.Country))]} />
+        <DropdownFilter handleChange={this.handleChange} targetProperty="Country" domainProperty={[...new Set(dictionary.map(item => item.Country))]} defaultValue="All" />
 
 
       </div>
