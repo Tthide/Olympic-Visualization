@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import DropdownFilter from './DropdownFilter';
 import DateFilter from './DateFilter';
 import '../styles/Filters.css';
-import VisualizationModeDomain from '../data/VisualizationModeDomain.json';
+import visualizationModeDomain from '../data/visualizationModeDomain.json';
+import dictionary from '../data/dictionary.json';
 
 
 
@@ -27,16 +28,19 @@ export default class Filters extends Component {
 
 
   render() {
- 
-    console.log('aaa'+VisualizationModeDomain);
+
 
     return (
       <div className='filters'>
         <h2>Child Component</h2>
 
-        <DropdownFilter   handleChange={this.handleChange}   targetProperty="VisualizationMode"   domainProperty={VisualizationModeDomain} />
+        <DropdownFilter handleChange={this.handleChange} targetProperty="VisualizationMode" domainProperty={visualizationModeDomain} />
 
         <DateFilter handleChange={this.handleChange} />
+
+        {/* Extracting here the country set from the dictionary*/}
+        <DropdownFilter handleChange={this.handleChange} targetProperty="Country" domainProperty={[...new Set(dictionary.map(item => item.Country))]} />
+
 
       </div>
     );
