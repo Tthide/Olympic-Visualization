@@ -1,36 +1,36 @@
 
-const FilterData = ({ dataset, currentFilters }) => {
+const FilterData = ({ dataset, currentFilters, dictionary }) => {
 
-  //In all cases we group the data by country
-
+  const groupBy = currentFilters.GroupBy;
 
   const medalCounts = dataset.reduce((acc, entry) => {
-    //current item's country
-    const country = entry.Country;
 
 
-    console.log("entry medal type"+entry.MedalType);
-    console.log("filter medal type"+currentFilters.MedalType);
-    console.log(entry.MedalType === currentFilters.MedalType);
-    if (currentFilters.Country === "All") {
+    //translating IOC country code to country name
+    // Find the corresponding country
+    const country = dictionary.find(country => country.Code === entry.Country);
 
-      //checking filters
-      if ((entry.Year >= currentFilters.TimePeriodStart)
-        && (entry.Year <= currentFilters.TimePeriodEnd)
-        && ((entry.Sport === currentFilters.Sport) || (currentFilters.Sport === "All"))
-        && ((entry.Medal === currentFilters.Medal) || (currentFilters.Medal === "All")) ) {
+    // Extract the country name if the code was found
+    const countryName = country ? country.Country : "Country not found";
+
+    //checking filters
+    if (((countryName === currentFilters.Country) || (currentFilters.Country === "All"))
+      && (entry.Year >= currentFilters.TimePeriodStart)
+      && (entry.Year <= currentFilters.TimePeriodEnd)
+      && ((entry.Sport === currentFilters.Sport) || (currentFilters.Sport === "All"))
+      && ((entry.Medal === currentFilters.Medal) || (currentFilters.Medal === "All"))) {
 
 
-        //checking if this country has been encoutered yet
-        if (acc[country]) {
-          acc[country] += 1;
-        } else {
-          acc[country] = 1;
-        }
-
+      //checking if this entry's value of the property we groupBy with has been encountered
+      if (acc[entry[groupBy]]) {
+        acc[entry[groupBy]] += 1;
+      } else {
+        acc[entry[groupBy]] = 1;
       }
 
     }
+
+
 
 
     return acc;

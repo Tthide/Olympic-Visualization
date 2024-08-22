@@ -4,6 +4,7 @@ import Treemap from './Visualizations/Treemap';
 import Choropleth from './Visualizations/Choropleth';
 // Import other visualizations if needed
 import summer from '../data/summer.json';
+import dictionary from '../data/dictionary.json';
 import FilterData from './FilterData';
 
 
@@ -13,7 +14,7 @@ const RenderVisualization = ({ VisualizationMode, currentFilters }) => {
     if (VisualizationMode !== "None") {
 
 
-        const Data = FilterData({ dataset: summer, currentFilters });
+        const Data = FilterData({ dataset: summer, currentFilters , dictionary: dictionary});
         console.log(Data);
         switch (VisualizationMode) {
             case 'PieChart':

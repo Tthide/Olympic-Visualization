@@ -14,6 +14,8 @@ class Visualization extends Component {
             Sport: "All",
             Medal: "All",
             Country: "All",
+            GroupBy:"Country",
+
         };
 
         this.updateState = this.updateState.bind(this);
@@ -41,13 +43,13 @@ class Visualization extends Component {
             <div className="visualization">
                 <div className="container-fluid">
                     <div class="row">
-                        <div class="col-xs-12 col-md-3">
-                            <Filters updateState={this.updateState} />
+                        <div class="col-xs-12 col-md-4">
+                            <Filters updateState={this.updateState} currentFilters={this.state} />
 
-                            {/*{stateEntries} */}
+                            {stateEntries}
     
                         </div>
-                        <div class="col-xs-12 col-md-9">
+                        <div class="col-xs-12 col-md-8">
                             <RenderVisualization VisualizationMode={this.state.VisualizationMode} currentFilters={this.state}/>
                         </div>
                     </div>
