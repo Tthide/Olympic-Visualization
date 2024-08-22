@@ -41,14 +41,13 @@ class Visualization extends Component {
             <div className="visualization">
                 <div className="container-fluid">
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-md-3">
                             <Filters updateState={this.updateState} />
-                            <h2>Current state</h2>
 
-                            {stateEntries}
+                            {/*{stateEntries} */}
     
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-md-9">
                             <RenderVisualization VisualizationMode={this.state.VisualizationMode} currentFilters={this.state}/>
                         </div>
                     </div>
