@@ -29,7 +29,7 @@ const DateFilter = ({ handleChange }) => {
 
                 
 
-                onAfterChange={(value, index) => {
+                onChange={(value, index) => {
 
                     console.log(`onAfterChange: ${JSON.stringify({ value, index })}`)
 
