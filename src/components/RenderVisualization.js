@@ -15,7 +15,7 @@ const RenderVisualization = ({ VisualizationMode, currentFilters }) => {
 
 
         const Data = FilterData({ dataset: summer, currentFilters , dictionary: dictionary});
-        console.log(Data);
+        //console.log(Data);
         switch (VisualizationMode) {
             case 'PieChart':
                 return <PieChart data={Data} />;

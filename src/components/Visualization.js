@@ -23,6 +23,11 @@ class Visualization extends Component {
     }
 
     updateState = (property, newValue) => {
+
+
+        console.log("updatedState property :" + property);
+        console.log("updatedState newValue :" + newValue);
+
         let newState = { ...this.state };
         newState[property] = newValue;
         this.setState(newState);

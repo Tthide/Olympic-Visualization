@@ -1,39 +1,55 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
-const DropdownFilter = ({ handleChange, targetProperty, domainProperty, defaultValue }) => {
+const DropdownFilter = ({ handleChange, targetProperty, domainProperty, defaultValue, disabled }) => {
+    // State to manage the selected value of the dropdown
+    const [selectedValue, setSelectedValue] = useState(defaultValue);
 
-    //Default label of dropdown box
-    let label = "Choose a "+targetProperty;
+    // Effect to update the selectedValue to the defaultValue when the disabled prop changes (defaultValue will never change)
+    useEffect(() => {
+        setSelectedValue(defaultValue);
+    }, [defaultValue, disabled]);
 
-    //GroupBy filter special case
+
+    // Notify parent component when selectedValue changes
+    // so that whenever the selectedValue changes, by choosing another option or by grouping by this parameter,
+    // both Filters and Visualization's states are updated.
+    useEffect(() => {
+        handleChange(targetProperty, selectedValue); // Notify parent component about the change
+    }, [selectedValue]);
+
+    // Default label of dropdown box
+    let label = "Choose a " + targetProperty;
+
+    // GroupBy filter special case
     if (targetProperty === "GroupBy") {
-        //we can't group by the following properties so we take them out of the domainProperty
-        domainProperty = domainProperty.filter(e => e !== 'TimePeriodStart' && e !== 'TimePeriodEnd' && e !== 'VisualizationMode')
+        // Filter out certain properties and add "Year"
+        domainProperty = domainProperty.filter(e => e !== 'TimePeriodStart' && e !== 'TimePeriodEnd' && e !== 'VisualizationMode');
         domainProperty.push("Year");
-
-        label = "Group the data by"
-
+        label = "Group the data by";
     }
-
-
 
     return (
         <div className="filter-dropdown">
+            <p>{selectedValue}</p>
             <label htmlFor={`dropdown-${targetProperty}`}>{label}: </label>
-            <select name="dropdown" id={`dropdown-${targetProperty}`} onChange={(event) => handleChange(targetProperty, event.target.value)}>
-
-
+            <select
+                name="dropdown"
+                id={`dropdown-${targetProperty}`}
+                onChange={(event) => {
+                    const value = event.target.value;
+                    setSelectedValue(value); // Update the state
+                }}
+                value={selectedValue} // Controlled component
+                disabled={disabled}
+            >
                 <option key="defaultValue" value={defaultValue}>{defaultValue}</option>
-
-                {/*checking for no duplicates with defaultValue and targetProperty */}
+                {/* Checking for no duplicates with defaultValue and targetProperty */}
                 {domainProperty.filter(element => element !== defaultValue && element !== targetProperty).map(element => (
                     <option key={element} value={element}>{element}</option>
                 ))}
-
             </select>
         </div>
     );
 };
 
 export default DropdownFilter;
-
