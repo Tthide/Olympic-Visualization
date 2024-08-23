@@ -71,7 +71,7 @@ export default class Filters extends Component {
     //console.log(Object.keys(this.props.currentFilters));
     return (
       <div className='filters'>
-        <h2>Child Component</h2>
+        <h2>Filters</h2>
 
         {/* VisualizationMode */}
         <DropdownFilter
