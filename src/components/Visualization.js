@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../styles/Visualization.css';
 import Filters from "./Filters"
-import  RenderVisualization from './RenderVisualization';
+import RenderVisualization from './RenderVisualization';
 
 class Visualization extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class Visualization extends Component {
             Sport: "All",
             Medal: "All",
             Country: "All",
-            GroupBy:"Country",
+            GroupBy: "Country",
 
         };
 
@@ -34,16 +34,6 @@ class Visualization extends Component {
     };
 
     render() {
-
-        const stateEntries = [];
-        Object.entries(this.state).forEach(([key, value]) => {
-            stateEntries.push(
-
-                <p> <strong>{key}:</strong> {value}</p>
-
-            );
-        });
-
         return (
             <div className="visualization">
                 <div className="container-fluid">
@@ -51,11 +41,10 @@ class Visualization extends Component {
                         <div class="col-xs-12 col-md-4">
                             <Filters updateState={this.updateState} currentFilters={this.state} />
 
-                            {stateEntries}
-    
+
                         </div>
                         <div class="col-xs-12 col-md-8">
-                            <RenderVisualization VisualizationMode={this.state.VisualizationMode} currentFilters={this.state}/>
+                            <RenderVisualization VisualizationMode={this.state.VisualizationMode} currentFilters={this.state} />
                         </div>
                     </div>
                 </div>
