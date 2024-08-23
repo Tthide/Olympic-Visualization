@@ -14,8 +14,8 @@ const DropdownFilter = ({ handleChange, targetProperty, domainProperty, defaultV
     // so that whenever the selectedValue changes, by choosing another option or by grouping by this parameter,
     // both Filters and Visualization's states are updated.
     useEffect(() => {
-        handleChange(targetProperty, selectedValue); // Notify parent component about the change
-    }, [selectedValue]);
+        handleChange(targetProperty, selectedValue); 
+    }, [selectedValue, handleChange, targetProperty]); //(handleChange & targetProperty should not change)
 
     // Default label of dropdown box
     let label = "Choose a " + targetProperty;
