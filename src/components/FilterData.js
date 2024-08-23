@@ -20,14 +20,18 @@ const FilterData = ({ dataset, currentFilters, dictionary }) => {
       && ((entry.Sport === currentFilters.Sport) || (currentFilters.Sport === "All"))
       && ((entry.Medal === currentFilters.Medal) || (currentFilters.Medal === "All"))) {
 
+      //getting all keys except the one we group by
+      let { [groupBy]: removed, ...rest } = entry;
 
-      //checking if this entry's value of the property we groupBy with has been encountered
-      if (acc[entry[groupBy]]) {
-        acc[entry[groupBy]] += 1;
-      } else {
-        acc[entry[groupBy]] = 1;
+      // Ensure acc is initialized to an object
+      if (!acc) acc = {};
+
+      // Initialize or update the accumulator
+      if (!acc[entry[groupBy]]) {
+        acc[entry[groupBy]] = [];  // Initialize an array if it doesn't exist
       }
 
+      acc[entry[groupBy]].push(rest);  // Add the rest of the entry to the array
     }
 
 
@@ -35,8 +39,6 @@ const FilterData = ({ dataset, currentFilters, dictionary }) => {
 
     return acc;
   }, {});
-
-
 
   return medalCounts;
 

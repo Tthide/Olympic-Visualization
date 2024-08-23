@@ -7,10 +7,11 @@ const PieChart = ({ data }) => {
     // State to store the width and height of the SVG container
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
+
     // We have to change the data format to fit with the expected input for D3 PieChart
     const pieChartData = Object.keys(data).map(key => ({
         label: key,
-        value: data[key]
+        value: data[key].length
     }));
     pieChartData.sort();
 
