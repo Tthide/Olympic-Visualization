@@ -30,7 +30,6 @@ const DropdownFilter = ({ handleChange, targetProperty, domainProperty, defaultV
 
     return (
         <div className="filter-dropdown">
-            <p>{selectedValue}</p>
             <label htmlFor={`dropdown-${targetProperty}`}>{label}: </label>
             <select
                 name="dropdown"
