@@ -7,21 +7,6 @@ const Treemap = ({ data }) => {
   // State to store the width and height of the SVG container
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-
-  // Transform the data to match D3 treemap's expected structure
-  const treeMapData = {
-    name: "root",
-    children: Object.keys(data).map(key => ({
-      name: key,
-      children: data[key].map(event => ({
-        name: `${event.City} ${event.Year}`, // Unique name for each event
-        value: 1, // Assign a value to each event; this determines the size in the treemap
-        ...event // Spread the rest of the event details for potential use
-      }))
-    }))
-  };
-
-
   // Set dimensions according to the client's
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -45,6 +30,21 @@ const Treemap = ({ data }) => {
 
   //updates whenever the data or dimensions changes
   useEffect(() => {
+
+    // Transform the data to match D3 treemap's expected structure
+    const treeMapData = {
+      name: "root",
+      children: Object.keys(data).map(key => ({
+        name: key,
+        children: data[key].map(event => ({
+          name: `${event.City} ${event.Year}`, // Unique name for each event
+          value: 1, // Assign a value to each event; this determines the size in the treemap
+          ...event // Spread the rest of the event details for potential use
+        }))
+      }))
+    };
+
+
     const { width, height } = dimensions;
 
     if (width === 0 || height === 0) return; // Don't render until dimensions are known
@@ -129,7 +129,7 @@ const Treemap = ({ data }) => {
 
 
 
-  }, [treeMapData, dimensions]);
+  }, [data, dimensions]);
 
   return (
     <svg ref={svgRef} style={{ width: '100%', height: '60vh' }}></svg>
