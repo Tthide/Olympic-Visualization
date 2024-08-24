@@ -50,12 +50,10 @@ const Treemap = ({ data }) => {
     if (width === 0 || height === 0) return; // Don't render until dimensions are known
 
     // Create a hierarchy element for the treemap layout
-    const root = d3.hierarchy( treeMapData )
+    const root = d3.hierarchy(treeMapData)
       .sum(d => d.value)
       .sort((a, b) => b.value - a.value);
 
-
-    console.log("root :", root);
 
     // Create the treemap layout
     const treeGenerator = d3.treemap()
@@ -87,8 +85,28 @@ const Treemap = ({ data }) => {
       .domain(valueExtent)
       .range([0.5, 1]);
 
-    // Bind the data to the rectangles
+
+    // Creating a rectangle for each node(single group item e.g. a country)
     const nodes = svg.selectAll("rect")
+      .data(root.children)
+      .enter()
+      .append("rect")
+      .attr("x", d => d.x0)
+      .attr("y", d => d.y0)
+      .attr("width", d => d.x1 - d.x0)
+      .attr("height", d => d.y1 - d.y0)
+      .attr("fill", d => color(d.data.name))
+      .attr("opacity", d => opacity(0.95)); // Use opacity scale
+
+    // Add labels to each node
+    nodes.append('text')
+      .attr('dx', 4)
+      .attr('dy', 14)
+      .text(d => d.data.name);
+
+
+    // Creating a rectangle for each leaf (single json item e.g. one medal)
+    const leaves = svg.selectAll("rect")
       .data(root.leaves())
       .enter()
       .append("rect")
@@ -97,16 +115,20 @@ const Treemap = ({ data }) => {
       .attr("width", d => d.x1 - d.x0)
       .attr("height", d => d.y1 - d.y0)
       .attr("fill", d => {
-        // Handle color scaling with parent categories
+        // Color like the parent node (or group)
         const parentCategory = d.parent ? d.parent.data.name : 'root';
         return color(parentCategory);
-      }).attr("opacity", d => opacity(d.data.value)); // Use opacity scale
+      })
+      .attr("opacity", d => opacity(d.data.value)); // Use opacity scale
 
-    // Add labels to each rectangle
-    nodes.append('text')
+    // Add labels to each leaf
+    leaves.append('text')
       .attr('dx', 4)
       .attr('dy', 14)
       .text(d => d.data.name);
+
+
+
   }, [treeMapData, dimensions]);
 
   return (
