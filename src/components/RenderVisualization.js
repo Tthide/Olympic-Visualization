@@ -17,7 +17,7 @@ const RenderVisualization = ({ VisualizationMode, currentFilters }) => {
         const Data = FilterData({ dataset: summer, currentFilters, dictionary: dictionary });
 
 
-        if (Object.keys(Data).length == 0) {
+        if (Object.keys(Data).length === 0) {
             return <>
                     <h2>No medals have been found</h2>
                     <h2>Please change your filters</h2>
@@ -27,7 +27,7 @@ const RenderVisualization = ({ VisualizationMode, currentFilters }) => {
                 case 'PieChart':
                     return <PieChart data={Data} />;
                 case 'Treemap':
-                    return <Treemap />;
+                    return <Treemap data={Data}/>;
                 case 'Choropleth':
                     return <Choropleth />;
                 // Add more cases for other visualization components
