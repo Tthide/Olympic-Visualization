@@ -31,7 +31,6 @@ const DateFilter = ({ handleChange }) => {
 
                 onChange={(value, index) => {
 
-                    console.log(`onAfterChange: ${JSON.stringify({ value, index })}`)
 
                     if(index===0){
                         handleChange('TimePeriodStart', value[0]);

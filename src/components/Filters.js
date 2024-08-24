@@ -35,20 +35,14 @@ export default class Filters extends Component {
     //special case to handle the disabling of grouped by filters
     if (Property === "GroupBy") {
 
-      console.log("*******************");
-
-      console.log("property : " + Property);
-      console.log("Value : " + Value);
-
+  
 
       let updatedState = { ...this.state.copy };
       // Update the state based on the selected value
       Object.keys(this.state).forEach(key => {
-        console.log("key : " +key)
         updatedState[key] = key === Value; // Set true for the selected key, false for others
       });
       this.setState(updatedState);
-      console.log("*******************");
     }
 
     // Updating Visualization component's state
@@ -68,7 +62,6 @@ export default class Filters extends Component {
 
   render() {
 
-    //console.log(Object.keys(this.props.currentFilters));
     return (
       <div className='filters'>
         <h2>Filters</h2>

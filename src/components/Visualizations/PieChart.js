@@ -16,7 +16,6 @@ const PieChart = ({ data }) => {
     }));
     pieChartData.sort();
 
-    console.log(pieChartData);
     useEffect(() => {
         const svg = d3.select(svgRef.current);
 
