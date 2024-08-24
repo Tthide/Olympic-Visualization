@@ -11,10 +11,12 @@ const PieChart = ({ data }) => {
     // We have to change the data format to fit with the expected input for D3 PieChart
     const pieChartData = Object.keys(data).map(key => ({
         label: key,
-        value: data[key].length
+        value: data[key].length,
+        details: data[key]
     }));
     pieChartData.sort();
 
+    console.log(pieChartData);
     useEffect(() => {
         const svg = d3.select(svgRef.current);
 
