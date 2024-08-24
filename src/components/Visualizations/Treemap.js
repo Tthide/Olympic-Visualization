@@ -8,18 +8,18 @@ const Treemap = ({ data }) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
 
-
-  // We have to change the data format to fit with the expected input for D3 Treemap
-  const treeMapData = Object.keys(data).map(key => ({
-    type: 'node',
-    name: key,
-    value: data[key].length,
-  }));
-
-
-  console.log(treeMapData);
-
-
+  // Transform the data to match D3 treemap's expected structure
+  const treeMapData = {
+    name: "root",
+    children: Object.keys(data).map(key => ({
+      name: key,
+      children: data[key].map(event => ({
+        name: `${event.City} ${event.Year}`, // Unique name for each event
+        value: 1, // Assign a value to each event; this determines the size in the treemap
+        ...event // Spread the rest of the event details for potential use
+      }))
+    }))
+  };
 
 
   // Set dimensions according to the client's
@@ -50,12 +50,12 @@ const Treemap = ({ data }) => {
     if (width === 0 || height === 0) return; // Don't render until dimensions are known
 
     // Create a hierarchy element for the treemap layout
-    const hierarchy = d3.hierarchy({ children: treeMapData })
+    const root = d3.hierarchy( treeMapData )
       .sum(d => d.value)
       .sort((a, b) => b.value - a.value);
 
 
-    console.log("hierarchy :", hierarchy);
+    console.log("root :", root);
 
     // Create the treemap layout
     const treeGenerator = d3.treemap()
@@ -63,7 +63,7 @@ const Treemap = ({ data }) => {
       .padding(2);
 
     // Use the generator on the hierarchy object built in previous section
-    treeGenerator(hierarchy);
+    treeGenerator(root);
 
     // Select the SVG element and clear any previous content
     const svg = d3.select(svgRef.current)
@@ -73,18 +73,34 @@ const Treemap = ({ data }) => {
     // Clear previous nodes before re-rendering
     svg.selectAll('*').remove();
 
-    // Create groups for each node
-    const nodes = svg.selectAll('g')
-      .data(hierarchy.leaves())
-      .enter()
-      .append('g')
-      .attr('transform', d => `translate(${d.x0},${d.y0})`);
+    // Extract unique categories for color scaling
+    const categories = Array.from(new Set(root.descendants().map(d => d.parent ? d.parent.data.name : 'root')));
 
-    // Draw rectangles for each node
-    nodes.append('rect')
-      .attr('width', d => d.x1 - d.x0)
-      .attr('height', d => d.y1 - d.y0)
-      .attr('fill', d => d3.scaleOrdinal(d3.schemeCategory10)(d.data.name));
+    // Define color scale
+    const color = d3.scaleOrdinal()
+      .domain(categories)
+      .range(d3.schemeCategory10); // Use D3's category10 color scheme
+
+    // Define opacity scale
+    const valueExtent = d3.extent(root.leaves(), d => d.data.value);
+    const opacity = d3.scaleLinear()
+      .domain(valueExtent)
+      .range([0.5, 1]);
+
+    // Bind the data to the rectangles
+    const nodes = svg.selectAll("rect")
+      .data(root.leaves())
+      .enter()
+      .append("rect")
+      .attr("x", d => d.x0)
+      .attr("y", d => d.y0)
+      .attr("width", d => d.x1 - d.x0)
+      .attr("height", d => d.y1 - d.y0)
+      .attr("fill", d => {
+        // Handle color scaling with parent categories
+        const parentCategory = d.parent ? d.parent.data.name : 'root';
+        return color(parentCategory);
+      }).attr("opacity", d => opacity(d.data.value)); // Use opacity scale
 
     // Add labels to each rectangle
     nodes.append('text')
