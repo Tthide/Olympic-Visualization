@@ -139,10 +139,21 @@ const Treemap = ({ data }) => {
       .data(root.children)
       .enter()
       .append("text")
-      .attr("transform", d => `translate(${d.x0 + 4},${d.y0 + 14})`)
+      .attr("transform", d => `translate(${d.x0+4},${d.y0})`)
       .text(d => d.data.name)
       .attr("fill", "black")
-      .attr("pointer-events", "none"); // Disable pointer events on text
+      .attr("pointer-events", "none")
+      .attr("font-size", d => {
+        // Calculate font size based on the rectangle's height or width
+        const rectWidth = d.x1 - d.x0;
+        const rectHeight = d.y1 - d.y0;
+        return (Math.min(rectWidth, rectHeight)/6) + "px"; // Adjust the divisor to scale font size
+      })  
+      //adjusting the position of the text because the font-size changed
+      .attr("dy", d => {
+        const rectHeight = d.y1 - d.y0;
+        return Math.min(rectHeight/6) ; // Adjust the divisor to position the text
+      }); // Disable pointer events on text
 
 
 
