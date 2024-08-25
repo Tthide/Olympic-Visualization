@@ -135,31 +135,42 @@ const Treemap = ({ data }) => {
       .attr("pointer-events", "none"); // Disable pointer events on node rects
 
     // Calculate font size based on the rectangle's height or width
-    const fontSize = ((rectWidth, rectHeight) => {
-      return (Math.min(rectWidth, rectHeight) / 6) + "px";
-    })
-
+    let fontSize = (rectWidth, rectHeight) => {
+      return Math.min(rectWidth, rectHeight) / 6;
+    };
 
     // Add node texts (on top of everything)
     nodeTextLayer.selectAll("text")
       .data(root.children)
       .enter()
       .append("text")
-      .attr("transform", d => `translate(${d.x0 + 4},${d.y0})`)
-      .text(d => d.data.name)
+      .attr("transform", d => `translate(${d.x0+4},${d.y0})`)
       .attr("fill", "black")
       .attr("pointer-events", "none") // Disable pointer events on text
       .attr("font-size", d => {
         const rectWidth = d.x1 - d.x0;
         const rectHeight = d.y1 - d.y0;
-        return fontSize(rectWidth, rectHeight);
+        return fontSize(rectWidth, rectHeight) + "px";
       })
-      //adjusting the position of the text because the font-size changed
+      .attr("margin-left", 10)
       .attr("dy", d => {
         const rectWidth = d.x1 - d.x0;
         const rectHeight = d.y1 - d.y0;
-        return fontSize(rectWidth, rectHeight); // Adjust the divisor to position the text
+        return fontSize(rectWidth, rectHeight) + "px"; // Adjust dy based on font size
+      })
+      .text(function (d) { //clipping the text when too big
+        const rectWidth = d.x1 - d.x0;
+        const rectHeight = d.y1 - d.y0;
+        const computedFontSize = fontSize(rectWidth, rectHeight); // Calculate the font size
+        const textLength = 1.8*rectWidth / computedFontSize; // Estimate max characters that can fit
+        const fullText = d.data.name;
+        if (fullText.length > textLength) {
+          return fullText.substring(0, textLength - 3) + "...";
+        } else {
+          return fullText;
+        }
       });
+
 
 
 
