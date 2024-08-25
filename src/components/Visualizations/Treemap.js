@@ -85,47 +85,65 @@ const Treemap = ({ data }) => {
       .domain(valueExtent)
       .range([0.5, 1]);
 
+    // Create separate groups (layers) for leaves, nodes, and node texts
+    //because we want the node's rect to be as a background but it's text to be on top
+    const leafLayer = svg.append("g").attr("class", "leaves");
+    const nodeLayer = svg.append("g").attr("class", "nodes");
+    const nodeTextLayer = svg.append("g").attr("class", "node-texts");
 
-    // Creating a rectangle for each node(single group item e.g. a country)
-    const nodes = svg.selectAll("rect")
-      .data(root.children)
-      .enter()
-      .append("rect")
-      .attr("x", d => d.x0)
-      .attr("y", d => d.y0)
-      .attr("width", d => d.x1 - d.x0)
-      .attr("height", d => d.y1 - d.y0)
-      .attr("fill", d => color(d.data.name))
-      .attr("opacity", d => opacity(0.95)); // Use opacity scale
-
-    // Add labels to each node
-    nodes.append('text')
-      .attr('dx', 4)
-      .attr('dy', 14)
-      .text(d => d.data.name);
-
-
-    // Creating a rectangle for each leaf (single json item e.g. one medal)
-    const leaves = svg.selectAll("rect")
+    // Add leaves
+    const leaves = leafLayer.selectAll("g.leaf")
       .data(root.leaves())
       .enter()
-      .append("rect")
-      .attr("x", d => d.x0)
-      .attr("y", d => d.y0)
+      .append("g")
+      .attr("class", "leaf")
+      .attr("transform", d => `translate(${d.x0},${d.y0})`);
+
+    leaves.append("rect")
       .attr("width", d => d.x1 - d.x0)
       .attr("height", d => d.y1 - d.y0)
       .attr("fill", d => {
-        // Color like the parent node (or group)
         const parentCategory = d.parent ? d.parent.data.name : 'root';
         return color(parentCategory);
       })
-      .attr("opacity", d => opacity(d.data.value)); // Use opacity scale
+      .attr("opacity", d => opacity(d.data.value)) // Use opacity scale
+      .on("mouseover", function (event, d) {
+        d3.select(this)
+          .attr("stroke", "#000")  // Add a black border on hover
+          .attr("stroke-width", 2) // Thicken the border on hover
+          .attr("opacity", 1);     // Increase opacity on hover
+      })
+      .on("mouseout", function (event, d) {
+        d3.select(this)
+          .attr("stroke", "none")  // Remove the border
+          .attr("opacity", d => opacity(d.data.value)); // Restore original opacity
+      });
 
-    // Add labels to each leaf
-    leaves.append('text')
-      .attr('dx', 4)
-      .attr('dy', 14)
-      .text(d => d.data.name);
+    // Add nodes
+    const nodes = nodeLayer.selectAll("g.node")
+      .data(root.children)
+      .enter()
+      .append("g")
+      .attr("class", "node")
+      .attr("transform", d => `translate(${d.x0},${d.y0})`);
+
+    nodes.append("rect")
+      .attr("width", d => d.x1 - d.x0)
+      .attr("height", d => d.y1 - d.y0)
+      .attr("fill", d => color(d.data.name))
+      .attr("opacity", d => opacity(0.95))
+      .attr("pointer-events", "none"); // Disable pointer events on node rects
+
+    // Add node texts (on top of everything)
+    nodeTextLayer.selectAll("text")
+      .data(root.children)
+      .enter()
+      .append("text")
+      .attr("transform", d => `translate(${d.x0 + 4},${d.y0 + 14})`)
+      .text(d => d.data.name)
+      .attr("fill", "black")
+      .attr("pointer-events", "none"); // Disable pointer events on text
+
 
 
 
