@@ -134,26 +134,32 @@ const Treemap = ({ data }) => {
       .attr("opacity", d => opacity(0.95))
       .attr("pointer-events", "none"); // Disable pointer events on node rects
 
+    // Calculate font size based on the rectangle's height or width
+    const fontSize = ((rectWidth, rectHeight) => {
+      return (Math.min(rectWidth, rectHeight) / 6) + "px";
+    })
+
+
     // Add node texts (on top of everything)
     nodeTextLayer.selectAll("text")
       .data(root.children)
       .enter()
       .append("text")
-      .attr("transform", d => `translate(${d.x0+4},${d.y0})`)
+      .attr("transform", d => `translate(${d.x0 + 4},${d.y0})`)
       .text(d => d.data.name)
       .attr("fill", "black")
-      .attr("pointer-events", "none")
+      .attr("pointer-events", "none") // Disable pointer events on text
       .attr("font-size", d => {
-        // Calculate font size based on the rectangle's height or width
         const rectWidth = d.x1 - d.x0;
         const rectHeight = d.y1 - d.y0;
-        return (Math.min(rectWidth, rectHeight)/6) + "px"; // Adjust the divisor to scale font size
-      })  
+        return fontSize(rectWidth, rectHeight);
+      })
       //adjusting the position of the text because the font-size changed
       .attr("dy", d => {
+        const rectWidth = d.x1 - d.x0;
         const rectHeight = d.y1 - d.y0;
-        return Math.min(rectHeight/6) ; // Adjust the divisor to position the text
-      }); // Disable pointer events on text
+        return fontSize(rectWidth, rectHeight); // Adjust the divisor to position the text
+      });
 
 
 
