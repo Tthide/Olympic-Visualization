@@ -2,6 +2,7 @@ import React from 'react'
 import PieChart from './Visualizations/PieChart';
 import Treemap from './Visualizations/Treemap';
 import Choropleth from './Visualizations/Choropleth';
+import BarChart from './Visualizations/BarChart';
 // Import other visualizations if needed
 import summer from '../data/summer.json';
 import dictionary from '../data/dictionary.json';
@@ -19,17 +20,19 @@ const RenderVisualization = ({ VisualizationMode, currentFilters }) => {
 
         if (Object.keys(Data).length === 0) {
             return <>
-                    <h2>No medals have been found</h2>
-                    <h2>Please change your filters</h2>
-                </>;
+                <h2>No medals have been found</h2>
+                <h2>Please change your filters</h2>
+            </>;
         } else {
             switch (VisualizationMode) {
                 case 'PieChart':
                     return <PieChart data={Data} />;
                 case 'Treemap':
-                    return <Treemap data={Data}/>;
+                    return <Treemap data={Data} />;
                 case 'Choropleth':
                     return <Choropleth />;
+                case 'BarChart':
+                    return <BarChart />;
                 // Add more cases for other visualization components
                 default:
                     return <h2>Please select a visualization mode</h2>;

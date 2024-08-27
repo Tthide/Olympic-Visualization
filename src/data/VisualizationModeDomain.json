@@ -1,5 +1,6 @@
 [
     "PieChart",
     "Treemap",
+    "BarChart",
     "Choropleth"
   ]
