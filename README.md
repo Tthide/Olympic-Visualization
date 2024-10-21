@@ -3,6 +3,9 @@ Visualization on how countries performed in the summer olympics.
 
 Based on the Olympic  [Games Medals Breakdown, 1896-2022 dataset](https://www.kaggle.com/datasets/amirba/olympic-sports-and-medals-18962021?resource=download&select=summer.csv).
 
+## Live Demo
+You can view the live project here: [Olympic Visualization GitHub Page](https://tthide.github.io/Olympic-Visualization/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
