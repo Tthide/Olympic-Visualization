@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/olympic-visualization-app/static/css/main.bc643740.css",
-    "main.js": "/olympic-visualization-app/static/js/main.7fa7499d.js",
-    "static/js/453.916f5098.chunk.js": "/olympic-visualization-app/static/js/453.916f5098.chunk.js",
-    "static/media/Roboto-Regular.ttf": "/olympic-visualization-app/static/media/Roboto-Regular.27f62b53b93858475a7f.ttf",
-    "static/media/Roboto-Bold.ttf": "/olympic-visualization-app/static/media/Roboto-Bold.d50a80138ec4f2fb5e9f.ttf",
-    "index.html": "/olympic-visualization-app/index.html",
-    "static/media/Olympic_Logo.svg": "/olympic-visualization-app/static/media/Olympic_Logo.f33b94e44cb5d6a8e0e3.svg",
-    "main.bc643740.css.map": "/olympic-visualization-app/static/css/main.bc643740.css.map",
-    "main.7fa7499d.js.map": "/olympic-visualization-app/static/js/main.7fa7499d.js.map",
-    "453.916f5098.chunk.js.map": "/olympic-visualization-app/static/js/453.916f5098.chunk.js.map"
+    "main.css": "/Olympic-Visualization/static/css/main.344eb880.css",
+    "main.js": "/Olympic-Visualization/static/js/main.093cf680.js",
+    "static/js/453.916f5098.chunk.js": "/Olympic-Visualization/static/js/453.916f5098.chunk.js",
+    "static/media/Roboto-Regular.ttf": "/Olympic-Visualization/static/media/Roboto-Regular.27f62b53b93858475a7f.ttf",
+    "static/media/Roboto-Bold.ttf": "/Olympic-Visualization/static/media/Roboto-Bold.d50a80138ec4f2fb5e9f.ttf",
+    "index.html": "/Olympic-Visualization/index.html",
+    "static/media/Olympic_Logo.svg": "/Olympic-Visualization/static/media/Olympic_Logo.f33b94e44cb5d6a8e0e3.svg",
+    "main.344eb880.css.map": "/Olympic-Visualization/static/css/main.344eb880.css.map",
+    "main.093cf680.js.map": "/Olympic-Visualization/static/js/main.093cf680.js.map",
+    "453.916f5098.chunk.js.map": "/Olympic-Visualization/static/js/453.916f5098.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc643740.css",
-    "static/js/main.7fa7499d.js"
+    "static/css/main.344eb880.css",
+    "static/js/main.093cf680.js"
   ]
 }
